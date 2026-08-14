@@ -53,32 +53,32 @@ Proyek ini adalah **OutSystems ODC External Logic Library (C# / .NET 10)** yang 
 1. **`UpsertEmbeddings`**
    * Menyimpan/memperbarui embedding dari daftar data teks (`TextInput`).
    * Parameter: `List<TextInput> inputs`, `EmbeddingConfig config`
-   * Return: `int UpsertedCount`
+   * Return: `UpsertResponse` (`Success`, `ErrorMessage`, `UpsertedCount`)
 
 2. **`UpsertFileEmbeddings`**
    * Mengekstrak teks dari file biner (PDF via `PdfPig`, teks plain seperti `.txt`, `.json`, `.xml`, `.csv`, `.md`, `.yaml` via UTF-8/Latin-1), memecah menjadi chunk, mengenerate embedding, dan menyimpannya ke ChromaDB.
    * Parameter: `List<FileInput> files`, `EmbeddingConfig config`
-   * Return: `int UpsertedChunkCount`
+   * Return: `UpsertResponse` (`Success`, `ErrorMessage`, `UpsertedCount`)
 
 3. **`SearchByText`**
    * Melakukan pencarian vektor semantik (top-K) berdasarkan teks query dan filter namespace (opsional).
    * Parameter: `string queryText`, `int topK = 5`, `string namespaceName = ""`, `EmbeddingConfig config`
-   * Return: `List<SearchResult>`
+   * Return: `SearchResponse` (`Success`, `ErrorMessage`, `Results`)
 
 4. **`DeleteDocuments`**
    * Menghapus dokumen tertentu dari ChromaDB berdasarkan daftar `DocumentId`.
    * Parameter: `List<string> documentIds`, `EmbeddingConfig config`
-   * Return: `bool Success`
+   * Return: `DeleteResponse` (`Success`, `ErrorMessage`)
 
 5. **`DeleteByNamespace`**
    * Menghapus seluruh dokumen yang memiliki metadata `namespace` tertentu.
    * Parameter: `string namespaceName`, `EmbeddingConfig config`
-   * Return: `bool Success`
+   * Return: `DeleteResponse` (`Success`, `ErrorMessage`)
 
 6. **`DeleteCollection`**
    * Menghapus seluruh koleksi data vektor dari ChromaDB.
    * Parameter: `string collectionName = ""`, `EmbeddingConfig config`
-   * Return: `bool Success`
+   * Return: `DeleteResponse` (`Success`, `ErrorMessage`)
 
 ---
 

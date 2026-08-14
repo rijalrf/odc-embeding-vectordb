@@ -30,14 +30,16 @@
 
 ## 📚 Daftar Server Actions (`IEmbeddingService`)
 
-| Server Action | Parameter Utama | Output | Deskripsi |
+Semua action mengembalikan structure response yang memuat status `Success` (Boolean) dan `ErrorMessage` (Text) untuk penanganan error yang aman (*graceful error handling*) tanpa throw exception.
+
+| Server Action | Parameter Utama | Output Record | Deskripsi |
 |---|---|---|---|
-| **`UpsertEmbeddings`** | `List<TextInput> inputs`, `EmbeddingConfig config` | `int UpsertedCount` | Menyimpan atau memperbarui embedding dari teks mentah ke ChromaDB. |
-| **`UpsertFileEmbeddings`** | `List<FileInput> files`, `EmbeddingConfig config` | `int UpsertedChunkCount` | Ekstrak teks dari file biner (PDF/JSON/XML/TXT), chunking, dan simpan embedding ke ChromaDB. |
-| **`SearchByText`** | `string queryText`, `int topK`, `string namespaceName`, `EmbeddingConfig config` | `List<SearchResult>` | Melakukan pencarian vektor semantik (top-K) berdasarkan query teks. |
-| **`DeleteDocuments`** | `List<string> documentIds`, `EmbeddingConfig config` | `bool Success` | Menghapus dokumen tertentu dari ChromaDB berdasarkan ID. |
-| **`DeleteByNamespace`** | `string namespaceName`, `EmbeddingConfig config` | `bool Success` | Menghapus seluruh dokumen yang berada dalam namespace tertentu. |
-| **`DeleteCollection`** | `string collectionName`, `EmbeddingConfig config` | `bool Success` | Menghapus seluruh koleksi vektor dari ChromaDB. |
+| **`UpsertEmbeddings`** | `List<TextInput> inputs`, `EmbeddingConfig config` | `UpsertResponse` (`Success`, `ErrorMessage`, `UpsertedCount`) | Menyimpan atau memperbarui embedding dari teks mentah ke ChromaDB. |
+| **`UpsertFileEmbeddings`** | `List<FileInput> files`, `EmbeddingConfig config` | `UpsertResponse` (`Success`, `ErrorMessage`, `UpsertedCount`) | Ekstrak teks dari file biner (PDF/JSON/XML/TXT), chunking, dan simpan embedding ke ChromaDB. |
+| **`SearchByText`** | `string queryText`, `int topK`, `string namespaceName`, `EmbeddingConfig config` | `SearchResponse` (`Success`, `ErrorMessage`, `Results`) | Melakukan pencarian vektor semantik (top-K) berdasarkan query teks. |
+| **`DeleteDocuments`** | `List<string> documentIds`, `EmbeddingConfig config` | `DeleteResponse` (`Success`, `ErrorMessage`) | Menghapus dokumen tertentu dari ChromaDB berdasarkan ID. |
+| **`DeleteByNamespace`** | `string namespaceName`, `EmbeddingConfig config` | `DeleteResponse` (`Success`, `ErrorMessage`) | Menghapus seluruh dokumen yang berada dalam namespace tertentu. |
+| **`DeleteCollection`** | `string collectionName`, `EmbeddingConfig config` | `DeleteResponse` (`Success`, `ErrorMessage`) | Menghapus seluruh koleksi vektor dari ChromaDB. |
 
 ---
 

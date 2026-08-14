@@ -4,6 +4,24 @@ Dokumen ini mencatat riwayat perubahan dan versi paket `OutSystems.EmbeddingServ
 
 ---
 
+## [v1.2.0] - 2026-08-15
+
+### 🚀 Standarisasi Response & Error Handling
+- **Struktur Response Komprehensif**: Semua Server Action kini mengembalikan record response yang memuat status operasi (`Success: Boolean`) dan pesan kesalahan (`ErrorMessage: Text`).
+- **Graceful Error Handling**: Kegagalan (misalnya API key tidak valid, jaringan error, parsing gagal) tidak lagi me-raise unhandled exception yang membuat aplikasi crash, melainkan ditangkap secara aman dan dikembalikan melalui `Success = False` beserta deskripsi pesan di `ErrorMessage`.
+- **Response Structures Baru**:
+  - `UpsertResponse`: Memuat `Success`, `ErrorMessage`, dan `UpsertedCount`.
+  - `SearchResponse`: Memuat `Success`, `ErrorMessage`, dan `Results` (List of `SearchResult`).
+  - `DeleteResponse`: Memuat `Success` dan `ErrorMessage`.
+
+### 📦 Informasi Paket
+- **Nama File**: `OutSystems.EmbeddingService.zip`
+- **Target Framework**: `.NET 10.0`
+- **Konfigurasi Build**: `Release`
+- **Struktur Arsip**: Flat structure
+
+---
+
 ## [v1.1.0] - 2026-08-15
 
 ### 🚀 Fitur Baru (New Actions)
