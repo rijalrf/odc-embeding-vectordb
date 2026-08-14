@@ -1,0 +1,19 @@
+# Build outputs & artifacts
+.artifacts/
+**/bin/
+**/obj/
+src/out/
+
+# Secrets & Credentials
+credential.txt
+*.env
+.env*
+!*.env.example
+
+# IDE & OS files
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
