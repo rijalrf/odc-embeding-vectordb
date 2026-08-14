@@ -39,6 +39,13 @@ Proyek ini adalah **OutSystems ODC External Logic Library (C# / .NET 10)** yang 
 5. **Kewajiban Release Notes**:
    * **Setiap kali membuat atau memperbarui file `OutSystems.EmbeddingService.zip`**, agen **wajib** mencatat perubahannya ke dalam file `RELEASE_NOTES.md` dan menyertakan ringkasan release notes kepada user.
 
+6. **Kewajiban GitHub Release**:
+   * File `.zip` diabaikan oleh `.gitignore` dan **tidak boleh di-commit langsung ke git history**.
+   * Setiap kali membuat rilis file `.zip` baru, agen **wajib mempublikasikannya ke GitHub Release** dengan melampirkan file `OutSystems.EmbeddingService.zip` sebagai asset release:
+     ```bash
+     gh release create <tag_version> OutSystems.EmbeddingService.zip --title "<title>" --notes-file RELEASE_NOTES.md
+     ```
+
 ---
 
 ## 📚 Daftar Server Actions (`IEmbeddingService`)
