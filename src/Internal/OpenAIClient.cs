@@ -25,7 +25,7 @@ public class OpenAIClient
         _embeddingsUrl = cleanUrl;
     }
 
-    public async Task<float[][]> GetEmbeddingsAsync(IEnumerable<string> inputs, string apiKey, int batchSize = 5)
+    public async Task<float[][]> GetEmbeddingsAsync(IEnumerable<string> inputs, string apiKey, int batchSize = 50)
     {
         var inputList = inputs.ToList();
         if (inputList.Count == 0)
