@@ -3,6 +3,7 @@
 **/bin/
 **/obj/
 src/out/
+*.zip
 
 # Secrets & Credentials
 credential.txt

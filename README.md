@@ -75,7 +75,7 @@
 
 ## 🚀 Panduan Deployment ke OutSystems ODC
 
-1. Unduh paket siap pakai **[`OutSystems.EmbeddingService.zip`](OutSystems.EmbeddingService.zip)** dari repositori ini.
+1. Unduh paket siap pakai **`OutSystems.EmbeddingService.zip`** dari menu [**GitHub Releases**](https://github.com/rijalrf/odc-embeding-vectordb/releases/latest).
 2. Buka **OutSystems ODC Portal** $\rightarrow$ Pilih menu **External Logic** / **Libraries**.
 3. Klik **Upload library** $\rightarrow$ Pilih file `OutSystems.EmbeddingService.zip`.
 4. Tambahkan dependensi `OutSystems.EmbeddingService` ke ODC App Anda di ODC Studio.
