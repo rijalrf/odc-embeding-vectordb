@@ -18,3 +18,4 @@ credential.txt
 *.suo
 .DS_Store
 Thumbs.db
+sample.json

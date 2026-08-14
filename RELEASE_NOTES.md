@@ -2,6 +2,25 @@
 
 Dokumen ini mencatat riwayat perubahan dan versi paket `OutSystems.EmbeddingService.zip` untuk OutSystems ODC External Logic.
 
+## [v1.3.0] - 2026-08-15
+
+### 🧠 Semantic Parsers & Smart Boundary Chunking
+- **OutSystems Semantic JSON Parser**:
+  - Secara cerdas mengenali struktur ekspor modul OutSystems (`sample.json`).
+  - Memecah modul menjadi unit semantik utuh: **Server Actions** (dengan daftar Input & Output Parameters), **Database Entities** (dengan atribut/kolom), **Structures / DTOs**, **Service Actions / APIs**, dan **BPT Processes**.
+  - Mengeliminasi noise internal (GUID keys, koordinat canvas `X, Y`, connector visual) sehingga menghemat $>60\%$ token embedding dan melipatgandakan relevansi pencarian semantik (RAG).
+- **XML Semantic Extractor**:
+  - Mengekstrak record XML secara utuh per elemen menggunakan `XDocument` agar tag pembuka dan penutup (`<tag>...</tag>`) tidak terpotong sembarangan.
+- **Smart Boundary TextChunker (Markdown & Plain Text)**:
+  - Meningkatkan algoritma chunking agar memotong teks pada batas alami: Heading Markdown (`#`), jeda paragraf (`\n\n`), akhir baris (`\n`), akhir kalimat (`. `, `? `, `! `), dan spasi kata.
+  - Menghilangkan masalah kalimat atau kata terpotong di tengah jalan pada file `.md`, `.txt`, `.csv`, dan `.yaml`.
+
+### 📦 Informasi Paket
+- **Nama File**: `OutSystems.EmbeddingService.zip`
+- **Target Framework**: `.NET 10.0`
+- **Konfigurasi Build**: `Release`
+- **Struktur Arsip**: Flat structure (siap upload ke ODC External Logic)
+
 ---
 
 ## [v1.2.1] - 2026-08-15

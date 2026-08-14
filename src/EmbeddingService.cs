@@ -147,6 +147,54 @@ public class EmbeddingService : IEmbeddingService
                     : (!string.IsNullOrWhiteSpace(file.FileName) ? file.FileName : Guid.NewGuid().ToString("N"));
 
                 string fileName = file.FileName ?? string.Empty;
+                var ext = Path.GetExtension(fileName).ToLowerInvariant();
+
+                // 1. Cek apakah file adalah OutSystems JSON
+                if (ext == ".json")
+                {
+                    string rawJson = System.Text.Encoding.UTF8.GetString(file.FileContent).TrimStart('\uFEFF');
+                    if (OutSystemsJsonParser.IsOutSystemsJson(rawJson))
+                    {
+                        var semanticChunks = OutSystemsJsonParser.ParseToSemanticChunks(rawJson);
+                        if (semanticChunks.Count > 0)
+                        {
+                            foreach (var (suffix, formattedText, _) in semanticChunks)
+                            {
+                                textInputs.Add(new TextInput
+                                {
+                                    DocumentId = $"{docId}#{suffix}",
+                                    Text = formattedText,
+                                    Source = fileName,
+                                    Namespace = file.Namespace ?? string.Empty
+                                });
+                            }
+                            continue;
+                        }
+                    }
+                }
+
+                // 2. Cek apakah file adalah XML
+                if (ext == ".xml")
+                {
+                    string rawXml = System.Text.Encoding.UTF8.GetString(file.FileContent).TrimStart('\uFEFF');
+                    var xmlChunks = XmlSemanticExtractor.ExtractXmlElements(rawXml);
+                    if (xmlChunks.Count > 0)
+                    {
+                        foreach (var (suffix, content, _) in xmlChunks)
+                        {
+                            textInputs.Add(new TextInput
+                            {
+                                DocumentId = $"{docId}#{suffix}",
+                                Text = content,
+                                Source = fileName,
+                                Namespace = file.Namespace ?? string.Empty
+                            });
+                        }
+                        continue;
+                    }
+                }
+
+                // 3. Ekstraksi standar untuk PDF, Markdown (.md), Text (.txt), CSV, YAML, dll.
                 string extractedText = FileTextExtractor.ExtractText(file.FileContent, fileName);
                 if (string.IsNullOrWhiteSpace(extractedText))
                 {
