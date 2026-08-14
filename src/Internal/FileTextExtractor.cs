@@ -20,7 +20,7 @@ public static class FileTextExtractor
             return ExtractTextFromPdf(fileContent);
         }
 
-        // For text files (.txt, .md, .csv, .json, .log, etc.)
+        // For text files (.txt, .md, .csv, .json, .xml, .yaml, .log, etc.)
         var text = Encoding.UTF8.GetString(fileContent);
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -28,7 +28,8 @@ public static class FileTextExtractor
             text = Encoding.Latin1.GetString(fileContent);
         }
 
-        return text;
+        // Strip UTF-8 BOM if present
+        return text.TrimStart('\uFEFF');
     }
 
     private static bool IsPdfHeader(byte[] bytes)
