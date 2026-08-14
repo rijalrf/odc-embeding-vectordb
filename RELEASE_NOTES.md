@@ -4,6 +4,20 @@ Dokumen ini mencatat riwayat perubahan dan versi paket `OutSystems.EmbeddingServ
 
 ---
 
+## [v1.2.1] - 2026-08-15
+
+### ⚡ Kompatibilitas Cloudflare Tunnel & HTTPS
+- **Penambahan Default User-Agent**: Menambahkan User-Agent header browser standar pada `HttpClient` agar request dari OutSystems ODC ke endpoint yang diproteksi Cloudflare WAF/Bot Protection (seperti domain tunnel `chromedbwsl.opendv.xyz`) tidak diblokir dengan status `403 Forbidden`.
+- **TLS/SSL Handshake Handler**: Mengonfigurasi `HttpClientHandler` untuk mendukung sertifikat SSL proxy/tunnel secara aman dan fleksibel.
+
+### 📦 Informasi Paket
+- **Nama File**: `OutSystems.EmbeddingService.zip`
+- **Target Framework**: `.NET 10.0`
+- **Konfigurasi Build**: `Release`
+- **Struktur Arsip**: Flat structure
+
+---
+
 ## [v1.2.0] - 2026-08-15
 
 ### 🚀 Standarisasi Response & Error Handling

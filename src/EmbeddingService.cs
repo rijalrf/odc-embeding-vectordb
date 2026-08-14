@@ -9,12 +9,21 @@ public class EmbeddingService : IEmbeddingService
 
     public EmbeddingService()
     {
-        _httpClient = new HttpClient();
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
+        _httpClient = new HttpClient(handler);
+        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) OutSystemsEmbeddingService/1.2.0");
     }
 
     public EmbeddingService(HttpClient httpClient)
     {
         _httpClient = httpClient ?? new HttpClient();
+        if (!_httpClient.DefaultRequestHeaders.UserAgent.Any())
+        {
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) OutSystemsEmbeddingService/1.2.0");
+        }
     }
 
     private (string apiKey, string baseUrl, string model, string chromaUrl, string chromaCollection) GetConfiguration(EmbeddingConfig config)
