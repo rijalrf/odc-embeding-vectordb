@@ -2,6 +2,19 @@
 
 Dokumen ini mencatat riwayat perubahan dan versi paket `OutSystems.EmbeddingService.zip` untuk OutSystems ODC External Logic.
 
+## [v1.3.1] - 2026-08-15
+
+### ⚡ Peningkatan Kecepatan Batch Embedding
+- **Optimasi Batching Ingestion (`batchSize = 50`)**: Mengubah default batching dari 5 menjadi 50 item per HTTP request ke provider embedding. Memangkas waktu ingest file ratusan chunk (seperti `sample.json`) dari ~15 detik menjadi ~2-3 detik serta meminimalkan risiko rate limit (HTTP 429).
+
+### 📦 Informasi Paket
+- **Nama File**: `OutSystems.EmbeddingService.zip`
+- **Target Framework**: `.NET 10.0`
+- **Konfigurasi Build**: `Release`
+- **Struktur Arsip**: Flat structure
+
+---
+
 ## [v1.3.0] - 2026-08-15
 
 ### 🧠 Semantic Parsers & Smart Boundary Chunking
